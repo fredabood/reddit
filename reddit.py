@@ -50,8 +50,8 @@ for celeb in celebs:
         negative_list.append(results["neg"])
         neutral_list.append(results["neu"])
 
-        comment_data['length'] = len(comment['text'])
-        comment_lengths.append(len(comment['text']))
+        comment_data['length'] = len(comment_data['text'])
+        comment_lengths.append(len(comment_data['text']))
         comment_data['timestampUTC'] = comment.created_utc
 
         comment_data['score'] = {

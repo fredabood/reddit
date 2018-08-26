@@ -79,7 +79,7 @@ for celeb in celebs:
         'compound': np.mean(compound_list),
         'neg': np.mean(negative_list),
         'neu': np.mean(neutral_list),
-        'pos': np.mean(positive_list)
+        'pos': np.mean(positive_list),
     }
 
     celeb['commentCount'] = len(celebs[celeb]['comments'])

@@ -71,7 +71,10 @@ for celeb in celebs:
 
     celebs[celeb]['comments'] = comments
 
-    print(positive_list)
+    print(np.mean(compound_list))
+    print(np.mean(negative_list))
+    print(np.mean(neutral_list))
+    print(np.mean(positive_list))
     celeb['vader'] = {
         'compound': np.mean(compound_list),
         'neg': np.mean(negative_list),

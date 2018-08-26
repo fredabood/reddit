@@ -1,0 +1,18 @@
+{
+  celeb: {
+    'comments':[
+      {
+        'text': comment.body,
+        'vader': {'compound': float, 'pos': float, 'neu': float, 'neg': float}
+        'length': len(comment.body),
+        'timestampUTC': comment.created_utc,
+        'score': {'compound': comment.score, 'ups': comment.ups, 'downs': comment.downs},
+        'subreddit': comment.subreddit_name_prefixed
+      }
+    ],
+    'commentCount': len(celebs[celeb]['comments']),
+    'avgCommentLenth': np.mean(comment_lengths),
+    'vader': {'compound': np.mean(compound_list), 'neg': np.mean(negative_list), 'neu': np.mean(neutral_list), 'pos': np.mean(positive_list)}
+    'avgScore': {'compound':mp.mean(score_list), 'ups': mp.mean(ups_list), 'douns': mp.mean(downs_list)}
+  }
+}

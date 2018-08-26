@@ -12,7 +12,7 @@ reddit = praw.Reddit(client_id=creds['client_id'],
                      username=creds['username'],
                      password=creds['password'])
 
-with open('celebs.json') as datafile:
+with open('data.json') as datafile:
     celebs = json.load(datafile)
 
 for celeb in celebs:
@@ -26,5 +26,5 @@ for celeb in celebs:
 
     celebs[celeb]['comments'] = comment_bodies
 
-with open('celebs.json', 'w') as datafile:
+with open('data.json', 'w') as datafile:
     json.dump(celebs, datafile)

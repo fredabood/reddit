@@ -71,24 +71,20 @@ for celeb in celebs:
 
     celebs[celeb]['comments'] = comments
 
-    print(np.mean(compound_list))
-    print(np.mean(negative_list))
-    print(np.mean(neutral_list))
-    print(np.mean(positive_list))
     celeb['vader'] = {
         'compound': np.mean(compound_list),
         'neg': np.mean(negative_list),
         'neu': np.mean(neutral_list),
-        'pos': np.mean(positive_list),
+        'pos': np.mean(positive_list)
     }
 
-    celeb['commentCount'] = len(celebs[celeb]['comments'])
-    celeb['avgCommentLenth'] = np.mean(comment_lengths)
-    celeb['avgScore'] = {
-        'compound':mp.mean(score_list),
-        'ups': mp.mean(ups_list),
-        'douns': mp.mean(downs_list)
-    }
+    # celeb['commentCount'] = len(celebs[celeb]['comments'])
+    # celeb['avgCommentLenth'] = np.mean(comment_lengths)
+    # celeb['avgScore'] = {
+    #     'compound':mp.mean(score_list),
+    #     'ups': mp.mean(ups_list),
+    #     'douns': mp.mean(downs_list)
+    # }
 
 
 with open('data.json', 'w') as datafile:

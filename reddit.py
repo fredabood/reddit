@@ -53,7 +53,7 @@ for celeb in celebs:
         comment_data['length'] = len(comment_data['text'])
         comment_lengths.append(len(comment_data['text']))
         comment_data['timestampUTC'] = comment.created_utc
-
+        
         comment_data['score'] = {
             'compound': comment.score,
             'ups': comment.ups,

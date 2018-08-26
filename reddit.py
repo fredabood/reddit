@@ -81,9 +81,9 @@ for celeb in celebs:
     celebs[celeb]['commentCount'] = len(celebs[celeb]['comments'])
     celebs[celeb]['avgCommentLenth'] = np.mean(comment_lengths)
     celebs[celeb]['avgScore'] = {
-        'compound':mp.mean(score_list),
-        'ups': mp.mean(ups_list),
-        'douns': mp.mean(downs_list)
+        'compound':np.mean(score_list),
+        'ups': np.mean(ups_list),
+        'douns': np.mean(downs_list)
     }
 
 

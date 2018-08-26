@@ -86,6 +86,8 @@ for celeb in celebs:
         'douns': np.mean(downs_list)
     }
 
+    print(celeb)
+
 
 with open('data.json', 'w') as datafile:
     json.dump(celebs, datafile)

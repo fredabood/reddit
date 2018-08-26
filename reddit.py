@@ -53,7 +53,7 @@ for celeb in celebs:
         comment_data['length'] = len(comment_data['text'])
         comment_lengths.append(len(comment_data['text']))
         comment_data['timestampUTC'] = comment.created_utc
-        
+
         comment_data['score'] = {
             'compound': comment.score,
             'ups': comment.ups,
@@ -62,7 +62,7 @@ for celeb in celebs:
 
         score_list.append(comment.score)
         ups_list.append(comment.ups)
-        dowwns_list.append(comment.downs)
+        downs_list.append(comment.downs)
 
         comment_data['subreddit'] = comment.subreddit_name_prefixed
 

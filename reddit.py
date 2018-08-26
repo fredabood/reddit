@@ -43,18 +43,18 @@ for celeb in celebs:
 
         analyzer = SentimentIntensityAnalyzer()
         results = analyzer.polarity_scores(comment.body)
-        comment['vader'] = results
+        comment_data['vader'] = results
 
         compound_list.append(results['compound'])
         positive_list.append(results["pos"])
         negative_list.append(results["neg"])
         neutral_list.append(results["neu"])
 
-        comment['length'] = len(comment['text'])
+        comment_data['length'] = len(comment['text'])
         comment_lengths.append(len(comment['text']))
-        comment['timestampUTC'] = comment.created_utc
+        comment_data['timestampUTC'] = comment.created_utc
 
-        comment['score'] = {
+        comment_data['score'] = {
             'compound': comment.score,
             'ups': comment.ups,
             'downs': comment.downs
@@ -64,7 +64,7 @@ for celeb in celebs:
         ups_list.append(comment.ups)
         dowwns_list.append(comment.downs)
 
-        comment['subreddit'] = comment.subreddit_name_prefixed
+        comment_data['subreddit'] = comment.subreddit_name_prefixed
 
         comments.append(comment_data)
 

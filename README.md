@@ -4,7 +4,7 @@ This project scrapes interesting informations about the top comments from a sele
 
 Some of this data is then aggregated to the user-level, and used to generate visualizations comparing the users to one another.
 
-##| Filename | Description |
+|File|Description|
 |-|-|
 |[usernames.csv](usernames.csv)|The names and usernames being scraped.|
 |[data.json](data.json)|The datafile saved by update_json|

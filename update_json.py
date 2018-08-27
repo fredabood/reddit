@@ -8,19 +8,19 @@ import numpy as np
 import pandas as pd
 
 
-def comment_data_gen(comment):    
+def comment_data_gen(comment):
     '''
     This function takes in PRAW's comment object, and outputs a dictionary containing key data about the comment.
-    
+
     text: the text body of the comment
     length: the character count of the comement
     utc_timestamp: the timestamp of comment creation
     subreddit: the sub where the comment was made
     score: upvotes, downvotes, and combined score
     vader: the compound, positive, negative, and neutral vader scores
-    
+
     Sample Dict:
-    
+
     {
         "text": "Here's the body text of the comment.",
         "vader": {
@@ -38,12 +38,12 @@ def comment_data_gen(comment):
         },
         "subreddit": "r/politics"
     }
-    
+
     '''
-    
+
     analyzer = SentimentIntensityAnalyzer()
     results = analyzer.polarity_scores(comment.body)
-    
+
     return dict(
         text = comment.body,
         length = len(comment.body),
@@ -62,16 +62,16 @@ def celeb_data_gen(username, reddit):
 
     '''
     This function takes in a reddit username, and outputs a dictionary containing key data about the comments made by that user.
-    
+
     username: the user's reddit username
     commentCount: number of comments made by the user
     avgCommentLenth: average length of the user's comments
     vader: dictionary containing the average compound, negative, neutral, and positive vader scores
     avgScore: dictionary containing the users average compound score, upvotes, and dounvotes
     comments: a list of dictionaries ouput by comment_data_gen()
-    
+
     Sample Data:
-    
+
     {
         "username": "aclu",
         "commentCount": 41,
@@ -108,7 +108,7 @@ def celeb_data_gen(username, reddit):
         ]
     }
     '''
-    
+
     profile = reddit.redditor(username)
     top_comments = profile.comments.top(limit=None)
 
@@ -125,11 +125,11 @@ def celeb_data_gen(username, reddit):
 
     comment_lengths = []
 
-    
+
     for comment in top_comments:
 
         comment_data = comment_data_gen(comment)
-        
+
         comments.append(comment_data)
 
         compound_list.append(comment_data['vader']['compound'])
@@ -142,8 +142,8 @@ def celeb_data_gen(username, reddit):
         downs_list.append(comment_data['score']['downs'])
 
         comment_lengths.append(len(comment_data['text']))
-        
-    
+
+
     return dict(
         username = username,
         commentCount = len(comments),
@@ -164,36 +164,44 @@ def celeb_data_gen(username, reddit):
 
 
 def update_json(filepath, return_df=False):
-    
+
     '''
     Updates the JSON datafile, and reads to DF for analysis.
     '''
-    
-    creds = ast.literal_eval(os.environ['REDDIT_CREDS'])
 
+    # Init Reddit
+    creds = ast.literal_eval(os.environ['REDDIT_CREDS'])
     reddit = praw.Reddit(client_id=creds['client_id'],
                          client_secret=creds['client_secret'],
                          user_agent=creds['user_agent'],
                          username=creds['username'],
                          password=creds['password'])
-    
+
+    #
+    # This code is attempting to read the users from the CSV rather than the existing json
+    #
+    # users = pd.read_csv(filepath)
+    # celebs = {}
+    # for celeb in users['celebrity']:
+    #     celebs[celeb] = celeb_data_gen(users['username'], reddit)
+    #
+
     # Read data from JSON
     with open(filepath,'r') as datafile:
         celebs = json.load(datafile)
-    
+
     # Updating the JSON file
     for celeb in celebs:
         celebs[celeb] = celeb_data_gen(celebs[celeb]['username'], reddit)
-    
+
     # Write output to JSON
     with open(filepath, 'w') as datafile:
         json.dump(celebs, datafile)
-    
+
     if return_df==True:
         return pd.read_json(filepath)
 
 
 if __name__ == "__main__":
-    
-    update_json('data.json')
 
+    update_json('data.json')

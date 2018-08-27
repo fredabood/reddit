@@ -16,7 +16,7 @@ def comment_data_gen(comment):
     length: the character count of the comement
     utc_timestamp: the timestamp of comment creation
     subreddit: the sub where the comment was made
-    score: upvotes, downvotes, and combined score
+    karma: upvotes, downvotes, and combined karma
     vader: the compound, positive, negative, and neutral vader scores
 
     Sample Dict:
@@ -31,7 +31,7 @@ def comment_data_gen(comment):
         },
         "length": 143,
         "timestampUTC": 1474305662,
-        "score": {
+        "karma": {
           "compound": 1074,
           "ups": 1074,
           "downs": 0
@@ -49,7 +49,7 @@ def comment_data_gen(comment):
         length = len(comment.body),
         utc_timestamp = comment.created_utc,
         subreddit = comment.subreddit_name_prefixed,
-        score = dict(
+        karma = dict(
             compound = comment.score,
             ups = comment.ups,
             downs = comment.downs
@@ -65,9 +65,9 @@ def celeb_data_gen(username, reddit):
 
     username: the user's reddit username
     commentCount: number of comments made by the user
-    avgCommentLenth: average length of the user's comments
+    avgCommentLength: average length of the user's comments
     vader: dictionary containing the average compound, negative, neutral, and positive vader scores
-    avgScore: dictionary containing the users average compound score, upvotes, and dounvotes
+    avgKarma: dictionary containing the users average compound karma, upvotes, and dounvotes
     comments: a list of dictionaries ouput by comment_data_gen()
 
     Sample Data:
@@ -75,14 +75,14 @@ def celeb_data_gen(username, reddit):
     {
         "username": "aclu",
         "commentCount": 41,
-        "avgCommentLenth": 230.3658536585366,
+        "avgCommentLength": 230.3658536585366,
         "vader": {
             "compound": 0.34544878048780486,
             "neg": 0.03953658536585366,
             "neu": 0.7870487804878048,
             "pos": 0.17346341463414633
         },
-        "avgScore": {
+        "avgKarma": {
             "compound": 2451.5365853658536,
             "ups": 2451.5365853658536,
             "douns": 0
@@ -98,7 +98,7 @@ def celeb_data_gen(username, reddit):
                 },
                 "length": 143,
                 "timestampUTC": 1474305662,
-                "score": {
+                "karma": {
                     "compound": 1074,
                     "ups": 1074,
                     "downs": 0
@@ -154,7 +154,7 @@ def celeb_data_gen(username, reddit):
             neu = np.mean(neutral_list),
             pos = np.mean(positive_list)
         ),
-        avgScore = dict(
+        avgKarma = dict(
             compound = np.mean(score_list),
             ups = np.mean(ups_list),
             douns = np.mean(downs_list)

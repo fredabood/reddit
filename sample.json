@@ -1,18 +1,54 @@
 {
-  celeb: {
-    'comments':[
+  "ACLU": {
+    "username": "aclu",
+    "commentCount": 41,
+    "avgCommentLenth": 230.3658536585366,
+    "vader": {
+      "compound": 0.34544878048780486,
+      "neg": 0.03953658536585366,
+      "neu": 0.7870487804878048,
+      "pos": 0.17346341463414633
+    },
+    "avgScore": {
+      "compound": 2451.5365853658536,
+      "ups": 2451.5365853658536,
+      "douns": 0
+    },
+    "comments": [
       {
-        'text': comment.body,
-        'vader': {'compound': float, 'pos': float, 'neu': float, 'neg': float}
-        'length': len(comment.body),
-        'timestampUTC': comment.created_utc,
-        'score': {'compound': comment.score, 'ups': comment.ups, 'downs': comment.downs},
-        'subreddit': comment.subreddit_name_prefixed
+        "text": "Here's the body text of the comment.",
+        "vader": {
+          "neg": 0.189,
+          "neu": 0.811,
+          "pos": 0,
+          "compound": -0.5423
+        },
+        "length": 143,
+        "timestampUTC": 1474305662,
+        "score": {
+          "compound": 1074,
+          "ups": 1074,
+          "downs": 0
+        },
+        "subreddit": "r/politics"
+      },
+      {
+        "text": "Here's a second comment.",
+        "vader": {
+          "neg": 0.189,
+          "neu": 0.811,
+          "pos": 0,
+          "compound": -0.5423
+        },
+        "length": 143,
+        "timestampUTC": 1474305662,
+        "score": {
+          "compound": 1074,
+          "ups": 1074,
+          "downs": 0
+        },
+        "subreddit": "r/politics"
       }
-    ],
-    'commentCount': len(celebs[celeb]['comments']),
-    'avgCommentLenth': np.mean(comment_lengths),
-    'vader': {'compound': np.mean(compound_list), 'neg': np.mean(negative_list), 'neu': np.mean(neutral_list), 'pos': np.mean(positive_list)}
-    'avgScore': {'compound':mp.mean(score_list), 'ups': mp.mean(ups_list), 'douns': mp.mean(downs_list)}
+    ]
   }
 }
